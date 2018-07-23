@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.transce.wcl.user.mapper.RpUserPayConfigMapper">
+
+	<resultMap id="RM_RpUserPayConfig" type="com.transce.wcl.user.entity.RpUserPayConfig">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="editTime" column="edit_time"/>
+        <result property="version" column="version"/>
+        <result property="remark" column="remark"/>
+        <result property="status" column="status"/>
+        <result property="auditStatus" column="audit_status"/>
+        <result property="isAutoSett" column="is_auto_sett"/>
+        <result property="productCode" column="product_code"/>
+        <result property="productName" column="product_name"/>
+        <result property="userNo" column="user_no"/>
+        <result property="userName" column="user_name"/>
+        <result property="riskDay" column="risk_day"/>
+        <result property="payKey" column="pay_key"/>
+        <result property="fundIntoType" column="fund_into_type"/>
+        <result property="paySecret" column="pay_secret"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+	    <![CDATA[
+		id,create_time,edit_time,version,remark,status,audit_status,is_auto_sett,product_code,product_name,user_no,user_name,risk_day,pay_key,fund_into_type,pay_secret
+	    ]]>
+	</sql>
+
+	<!--保存 -->
+	<insert id="save">
+	    <![CDATA[
+	        INSERT INTO rp_user_pay_config (
+	        	id ,
+	        	create_time ,
+	        	edit_time ,
+	        	version ,
+	        	remark ,
+	        	status ,
+	        	audit_status ,
+	        	is_auto_sett ,
+	        	product_code ,
+	        	product_name ,
+	        	user_no ,
+	        	user_name ,
+	        	risk_day ,
+	        	pay_key ,
+	        	fund_into_type ,
+	        	pay_secret 
+	        ) VALUES (
+	        	#{id} ,
+	        	#{createTime} ,
+	        	#{editTime} ,
+	        	#{version} ,
+	        	#{remark} ,
+	        	#{status} ,
+	        	#{auditStatus} ,
+	        	#{isAutoSett} ,
+	        	#{productCode} ,
+	        	#{productName} ,
+	        	#{userNo} ,
+	        	#{userName} ,
+	        	#{riskDay} ,
+	        	#{payKey} ,
+	        	#{fundIntoType} ,
+	        	#{paySecret} 
+	        )
+	    ]]>
+	</insert>
+	
+	<!-- update 条件组合 -->
+	<sql id="update_sql">
+		<set>
+			<if test="createTime != null">
+				create_time = #{createTime} ,
+			</if>
+			<if test="editTime != null">
+				edit_time = #{editTime} ,
+			</if>
+			<if test="version != null">
+				version = #{version} ,
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark} ,
+			</if>
+			<if test="status != null and status != ''">
+				status = #{status} ,
+			</if>
+			<if test="auditStatus != null and auditStatus != ''">
+				audit_status = #{auditStatus} ,
+			</if>
+			<if test="isAutoSett != null and isAutoSett != ''">
+				is_auto_sett = #{isAutoSett} ,
+			</if>
+			<if test="productCode != null and productCode != ''">
+				product_code = #{productCode} ,
+			</if>
+			<if test="productName != null and productName != ''">
+				product_name = #{productName} ,
+			</if>
+			<if test="userNo != null and userNo != ''">
+				user_no = #{userNo} ,
+			</if>
+			<if test="userName != null and userName != ''">
+				user_name = #{userName} ,
+			</if>
+			<if test="riskDay != null">
+				risk_day = #{riskDay} ,
+			</if>
+			<if test="payKey != null and payKey != ''">
+				pay_key = #{payKey} ,
+			</if>
+			<if test="fundIntoType != null and fundIntoType != ''">
+				fund_into_type = #{fundIntoType} ,
+			</if>
+			<if test="paySecret != null and paySecret != ''">
+				pay_secret = #{paySecret} 
+			</if>
+		</set>
+	</sql>
+	
+	<!-- 修改 -->
+	<update id="update">
+		UPDATE rp_user_pay_config
+		<include refid="update_sql" />
+		WHERE
+			id = #{id} 	</update>
+
+	<!-- 根据ID删除 -->
+	<delete id="delete">
+    	<![CDATA[
+        	DELETE FROM rp_user_pay_config 
+        	WHERE  id = #{id}
+    	]]>
+	</delete>
+	
+	<!-- getById -->
+	<select id="getById" resultMap="RM_RpUserPayConfig">
+		SELECT
+		<include refid="columns" />
+		FROM rp_user_pay_config
+		WHERE  id = #{id}  
+	</select>
+
+	<!-- 获取总数 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(1)
+		FROM rp_user_pay_config
+		<where>
+			<if test="model != null">
+						<if test="model.id != null and model.id !=''">
+							AND id = #{model.id}
+						</if>
+						<if test="model.createTime != null">
+							AND create_time = #{model.createTime}
+						</if> 
+						<if test="model.editTime != null">
+							AND edit_time = #{model.editTime}
+						</if> 
+						<if test="model.version != null">
+							AND version = #{model.version}
+						</if>
+						<if test="model.remark != null and model.remark !=''">
+							AND remark = #{model.remark}
+						</if>
+						<if test="model.status != null and model.status !=''">
+							AND status = #{model.status}
+						</if>
+						<if test="model.auditStatus != null and model.auditStatus !=''">
+							AND audit_status = #{model.auditStatus}
+						</if>
+						<if test="model.isAutoSett != null and model.isAutoSett !=''">
+							AND is_auto_sett = #{model.isAutoSett}
+						</if>
+						<if test="model.productCode != null and model.productCode !=''">
+							AND product_code = #{model.productCode}
+						</if>
+						<if test="model.productName != null and model.productName !=''">
+							AND product_name = #{model.productName}
+						</if>
+						<if test="model.userNo != null and model.userNo !=''">
+							AND user_no = #{model.userNo}
+						</if>
+						<if test="model.userName != null and model.userName !=''">
+							AND user_name = #{model.userName}
+						</if>
+						<if test="model.riskDay != null">
+							AND risk_day = #{model.riskDay}
+						</if>
+						<if test="model.payKey != null and model.payKey !=''">
+							AND pay_key = #{model.payKey}
+						</if>
+						<if test="model.fundIntoType != null and model.fundIntoType !=''">
+							AND fund_into_type = #{model.fundIntoType}
+						</if>
+						<if test="model.paySecret != null and model.paySecret !=''">
+							AND pay_secret = #{model.paySecret}
+						</if>
+			</if>
+		</where>
+	</select>  
+	
+	<!-- 按条件组合搜索列表  -->
+	<select id="findList" resultMap="RM_RpUserPayConfig">
+		SELECT
+		<include refid="columns" />
+		FROM  rp_user_pay_config
+		<where>
+					<if test="id != null and id !=''">
+						AND id = #{id}
+					</if>
+					<if test="createTime != null">
+						AND create_time = #{createTime}
+					</if>
+					<if test="editTime != null">
+						AND edit_time = #{editTime}
+					</if>
+					<if test="version != null">
+						AND version = #{version}
+					</if>
+					<if test="remark != null and remark !=''">
+						AND remark = #{remark}
+					</if>
+					<if test="status != null and status !=''">
+						AND status = #{status}
+					</if>
+					<if test="auditStatus != null and auditStatus !=''">
+						AND audit_status = #{auditStatus}
+					</if>
+					<if test="isAutoSett != null and isAutoSett !=''">
+						AND is_auto_sett = #{isAutoSett}
+					</if>
+					<if test="productCode != null and productCode !=''">
+						AND product_code = #{productCode}
+					</if>
+					<if test="productName != null and productName !=''">
+						AND product_name = #{productName}
+					</if>
+					<if test="userNo != null and userNo !=''">
+						AND user_no = #{userNo}
+					</if>
+					<if test="userName != null and userName !=''">
+						AND user_name = #{userName}
+					</if>
+					<if test="riskDay != null">
+						AND risk_day = #{riskDay}
+					</if>
+					<if test="payKey != null and payKey !=''">
+						AND pay_key = #{payKey}
+					</if>
+					<if test="fundIntoType != null and fundIntoType !=''">
+						AND fund_into_type = #{fundIntoType}
+					</if>
+					<if test="paySecret != null and paySecret !=''">
+						AND pay_secret = #{paySecret}
+					</if>
+		</where>
+		<if test="sortColumns != null and sortColumns !=''">
+			ORDER BY #{sortColumns}
+		</if>
+	</select>
+
+	<!-- 分页 -->
+	<select id="findPageList" resultMap="RM_RpUserPayConfig">
+		SELECT <include refid="columns" />
+		FROM rp_user_pay_config
+		<where>
+			<if test="model != null">
+						<if test="model.id != null and model.id !=''">
+							AND id = #{model.id}
+						</if>
+						<if test="model.createTime != null">
+							AND create_time = #{model.createTime}
+						</if>
+						<if test="model.editTime != null">
+							AND edit_time = #{model.editTime}
+						</if>
+						<if test="model.version != null">
+							AND version = #{model.version}
+						</if>
+						<if test="model.remark != null and model.remark !=''">
+							AND remark = #{model.remark}
+						</if>
+						<if test="model.status != null and model.status !=''">
+							AND status = #{model.status}
+						</if>
+						<if test="model.auditStatus != null and model.auditStatus !=''">
+							AND audit_status = #{model.auditStatus}
+						</if>
+						<if test="model.isAutoSett != null and model.isAutoSett !=''">
+							AND is_auto_sett = #{model.isAutoSett}
+						</if>
+						<if test="model.productCode != null and model.productCode !=''">
+							AND product_code = #{model.productCode}
+						</if>
+						<if test="model.productName != null and model.productName !=''">
+							AND product_name = #{model.productName}
+						</if>
+						<if test="model.userNo != null and model.userNo !=''">
+							AND user_no = #{model.userNo}
+						</if>
+						<if test="model.userName != null and model.userName !=''">
+							AND user_name = #{model.userName}
+						</if>
+						<if test="model.riskDay != null">
+							AND risk_day = #{model.riskDay}
+						</if>
+						<if test="model.payKey != null and model.payKey !=''">
+							AND pay_key = #{model.payKey}
+						</if>
+						<if test="model.fundIntoType != null and model.fundIntoType !=''">
+							AND fund_into_type = #{model.fundIntoType}
+						</if>
+						<if test="model.paySecret != null and model.paySecret !=''">
+							AND pay_secret = #{model.paySecret}
+						</if>
+			</if>
+		</where>
+		limit 
+		<choose>
+			<when test="pager != null">
+				#{pager.begin},#{pager.pageSize}
+			</when>
+			<otherwise>
+				0,10
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>

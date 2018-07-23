@@ -10,6 +10,9 @@ import com.pay.common.core.utils.StringUtil;
  */
 public class BaseEntity implements Serializable {
 
+	/** 排序字段 */
+	private String sortColumns;
+	
 	/**
 	 * 
 	 */
@@ -88,4 +91,12 @@ public class BaseEntity implements Serializable {
 		this.remark = remark;
 	}
 
+	public String getSortColumns() {
+		return sortColumns;
+	}
+
+	public void setSortColumns(String sortColumns) {
+		this.sortColumns = sortColumns;
+	}
+	
 }

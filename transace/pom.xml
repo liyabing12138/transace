@@ -12,6 +12,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
+		<version.transce-user-service>0.0.1-SNAPSHOT</version.transce-user-service>
+		<version.transce-user-service-facde>0.0.1-SNAPSHOT</version.transce-user-service-facde>
 		<version.transce-message-service>0.0.1-SNAPSHOT</version.transce-message-service>
 		<version.transce-message-service-facde>0.0.1-SNAPSHOT</version.transce-message-service-facde>
 		<version.transce-common>0.0.1-SNAPSHOT</version.transce-common>
@@ -19,10 +21,10 @@
 		<java.version>1.8</java.version>
 		<commons-lang.version>2.6</commons-lang.version>
 		<commons-io.version>2.5</commons-io.version>
-		<junit.version>4.11</junit.version>
 	</properties>
 
 	<modules>
+		<module>transce-user-service-facde</module>
 		<module>transce-message-service-facde</module>
 		<module>transce-message-service</module>
 		<module>transce-server</module>
@@ -71,13 +73,6 @@
 			<groupId>com.vdurmont</groupId>
 			<artifactId>emoji-java</artifactId>
 			<version>3.2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<!-- 表示test的时候引入，发布的时候不会加载此�? -->
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
