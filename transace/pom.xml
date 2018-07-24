@@ -12,6 +12,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
+	    <version.transce-trade-service-facde>0.0.1-SNAPSHOT</version.transce-trade-service-facde>
 		<version.transce-user-service>0.0.1-SNAPSHOT</version.transce-user-service>
 		<version.transce-user-service-facde>0.0.1-SNAPSHOT</version.transce-user-service-facde>
 		<version.transce-message-service>0.0.1-SNAPSHOT</version.transce-message-service>
@@ -24,6 +25,10 @@
 	</properties>
 
 	<modules>
+	    <module>transce-trade-service</module>
+	    <module>transce-trade-service-facde</module> 
+	    <module>transce-web-gateway</module>
+	    <module>transce-user-service</module>
 		<module>transce-user-service-facde</module>
 		<module>transce-message-service-facde</module>
 		<module>transce-message-service</module>
