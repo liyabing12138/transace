@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.transce.wcl.accounting.mapper.RpAccountingVoucherMapper">
+
+	<resultMap id="RM_RpAccountingVoucher" type="com.transce.wcl.accounting.entity.RpAccountingVoucher">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="editTime" column="edit_time"/>
+        <result property="entryType" column="entry_type"/>
+        <result property="requestNo" column="request_no"/>
+        <result property="fromSystem" column="from_system"/>
+        <result property="voucherNo" column="voucher_no"/>
+        <result property="accountingDate" column="accounting_date"/>
+        <result property="bankChangeAmount" column="bank_change_amount"/>
+        <result property="payerAccountNo" column="payer_account_no"/>
+        <result property="receiverAccountNo" column="receiver_account_no"/>
+        <result property="bankAccount" column="bank_account"/>
+        <result property="bankChannelCode" column="bank_channel_code"/>
+        <result property="payerChangeAmount" column="payer_change_amount"/>
+        <result property="receiverChangeAmount" column="receiver_change_amount"/>
+        <result property="profit" column="profit"/>
+        <result property="income" column="income"/>
+        <result property="cost" column="cost"/>
+        <result property="remark" column="remark"/>
+        <result property="bankOrderNo" column="bank_order_no"/>
+        <result property="payerAccountType" column="payer_account_type"/>
+        <result property="payAmount" column="pay_amount"/>
+        <result property="receiverAccountType" column="receiver_account_type"/>
+        <result property="receiverFee" column="receiver_fee"/>
+        <result property="payerFee" column="payer_fee"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+	    <![CDATA[
+		id,create_time,edit_time,entry_type,request_no,from_system,voucher_no,accounting_date,bank_change_amount,payer_account_no,receiver_account_no,bank_account,bank_channel_code,payer_change_amount,receiver_change_amount,profit,income,cost,remark,bank_order_no,payer_account_type,pay_amount,receiver_account_type,receiver_fee,payer_fee
+	    ]]>
+	</sql>
+
+	<!--保存 -->
+	<insert id="save">
+	    <![CDATA[
+	        INSERT INTO rp_accounting_voucher (
+	        	id ,
+	        	create_time ,
+	        	edit_time ,
+	        	entry_type ,
+	        	request_no ,
+	        	from_system ,
+	        	voucher_no ,
+	        	accounting_date ,
+	        	bank_change_amount ,
+	        	payer_account_no ,
+	        	receiver_account_no ,
+	        	bank_account ,
+	        	bank_channel_code ,
+	        	payer_change_amount ,
+	        	receiver_change_amount ,
+	        	profit ,
+	        	income ,
+	        	cost ,
+	        	remark ,
+	        	bank_order_no ,
+	        	payer_account_type ,
+	        	pay_amount ,
+	        	receiver_account_type ,
+	        	receiver_fee ,
+	        	payer_fee 
+	        ) VALUES (
+	        	#{id} ,
+	        	#{createTime} ,
+	        	#{editTime} ,
+	        	#{entryType} ,
+	        	#{requestNo} ,
+	        	#{fromSystem} ,
+	        	#{voucherNo} ,
+	        	#{accountingDate} ,
+	        	#{bankChangeAmount} ,
+	        	#{payerAccountNo} ,
+	        	#{receiverAccountNo} ,
+	        	#{bankAccount} ,
+	        	#{bankChannelCode} ,
+	        	#{payerChangeAmount} ,
+	        	#{receiverChangeAmount} ,
+	        	#{profit} ,
+	        	#{income} ,
+	        	#{cost} ,
+	        	#{remark} ,
+	        	#{bankOrderNo} ,
+	        	#{payerAccountType} ,
+	        	#{payAmount} ,
+	        	#{receiverAccountType} ,
+	        	#{receiverFee} ,
+	        	#{payerFee} 
+	        )
+	    ]]>
+	</insert>
+	
+	<!-- update 条件组合 -->
+	<sql id="update_sql">
+		<set>
+			<if test="createTime != null">
+				create_time = #{createTime} ,
+			</if>
+			<if test="editTime != null">
+				edit_time = #{editTime} ,
+			</if>
+			<if test="entryType != null">
+				entry_type = #{entryType} ,
+			</if>
+			<if test="requestNo != null and requestNo != ''">
+				request_no = #{requestNo} ,
+			</if>
+			<if test="fromSystem != null">
+				from_system = #{fromSystem} ,
+			</if>
+			<if test="voucherNo != null and voucherNo != ''">
+				voucher_no = #{voucherNo} ,
+			</if>
+			<if test="accountingDate != null">
+				accounting_date = #{accountingDate} ,
+			</if>
+			<if test="bankChangeAmount != null">
+				bank_change_amount = #{bankChangeAmount} ,
+			</if>
+			<if test="payerAccountNo != null and payerAccountNo != ''">
+				payer_account_no = #{payerAccountNo} ,
+			</if>
+			<if test="receiverAccountNo != null and receiverAccountNo != ''">
+				receiver_account_no = #{receiverAccountNo} ,
+			</if>
+			<if test="bankAccount != null and bankAccount != ''">
+				bank_account = #{bankAccount} ,
+			</if>
+			<if test="bankChannelCode != null and bankChannelCode != ''">
+				bank_channel_code = #{bankChannelCode} ,
+			</if>
+			<if test="payerChangeAmount != null">
+				payer_change_amount = #{payerChangeAmount} ,
+			</if>
+			<if test="receiverChangeAmount != null">
+				receiver_change_amount = #{receiverChangeAmount} ,
+			</if>
+			<if test="profit != null">
+				profit = #{profit} ,
+			</if>
+			<if test="income != null">
+				income = #{income} ,
+			</if>
+			<if test="cost != null">
+				cost = #{cost} ,
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark} ,
+			</if>
+			<if test="bankOrderNo != null and bankOrderNo != ''">
+				bank_order_no = #{bankOrderNo} ,
+			</if>
+			<if test="payerAccountType != null">
+				payer_account_type = #{payerAccountType} ,
+			</if>
+			<if test="payAmount != null">
+				pay_amount = #{payAmount} ,
+			</if>
+			<if test="receiverAccountType != null">
+				receiver_account_type = #{receiverAccountType} ,
+			</if>
+			<if test="receiverFee != null">
+				receiver_fee = #{receiverFee} ,
+			</if>
+			<if test="payerFee != null">
+				payer_fee = #{payerFee} 
+			</if>
+		</set>
+	</sql>
+	
+	<!-- 修改 -->
+	<update id="update">
+		UPDATE rp_accounting_voucher
+		<include refid="update_sql" />
+		WHERE
+			id = #{id} 	</update>
+
+	<!-- 根据ID删除 -->
+	<delete id="delete">
+    	<![CDATA[
+        	DELETE FROM rp_accounting_voucher 
+        	WHERE  id = #{id}
+    	]]>
+	</delete>
+	
+	<!-- getById -->
+	<select id="getById" resultMap="RM_RpAccountingVoucher">
+		SELECT
+		<include refid="columns" />
+		FROM rp_accounting_voucher
+		WHERE  id = #{id}  
+	</select>
+
+	<!-- 获取总数 -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(1)
+		FROM rp_accounting_voucher
+		<where>
+			<if test="model != null">
+						<if test="model.id != null">
+							AND id = #{model.id}
+						</if>
+						<if test="model.createTime != null">
+							AND create_time = #{model.createTime}
+						</if> 
+						<if test="model.editTime != null">
+							AND edit_time = #{model.editTime}
+						</if> 
+						<if test="model.entryType != null">
+							AND entry_type = #{model.entryType}
+						</if>
+						<if test="model.requestNo != null and model.requestNo !=''">
+							AND request_no = #{model.requestNo}
+						</if>
+						<if test="model.fromSystem != null">
+							AND from_system = #{model.fromSystem}
+						</if>
+						<if test="model.voucherNo != null and model.voucherNo !=''">
+							AND voucher_no = #{model.voucherNo}
+						</if>
+						<if test="model.accountingDate != null">
+							AND accounting_date = #{model.accountingDate}
+						</if> 
+						<if test="model.bankChangeAmount != null">
+							AND bank_change_amount = #{model.bankChangeAmount}
+						</if>
+						<if test="model.payerAccountNo != null and model.payerAccountNo !=''">
+							AND payer_account_no = #{model.payerAccountNo}
+						</if>
+						<if test="model.receiverAccountNo != null and model.receiverAccountNo !=''">
+							AND receiver_account_no = #{model.receiverAccountNo}
+						</if>
+						<if test="model.bankAccount != null and model.bankAccount !=''">
+							AND bank_account = #{model.bankAccount}
+						</if>
+						<if test="model.bankChannelCode != null and model.bankChannelCode !=''">
+							AND bank_channel_code = #{model.bankChannelCode}
+						</if>
+						<if test="model.payerChangeAmount != null">
+							AND payer_change_amount = #{model.payerChangeAmount}
+						</if>
+						<if test="model.receiverChangeAmount != null">
+							AND receiver_change_amount = #{model.receiverChangeAmount}
+						</if>
+						<if test="model.profit != null">
+							AND profit = #{model.profit}
+						</if>
+						<if test="model.income != null">
+							AND income = #{model.income}
+						</if>
+						<if test="model.cost != null">
+							AND cost = #{model.cost}
+						</if>
+						<if test="model.remark != null and model.remark !=''">
+							AND remark = #{model.remark}
+						</if>
+						<if test="model.bankOrderNo != null and model.bankOrderNo !=''">
+							AND bank_order_no = #{model.bankOrderNo}
+						</if>
+						<if test="model.payerAccountType != null">
+							AND payer_account_type = #{model.payerAccountType}
+						</if>
+						<if test="model.payAmount != null">
+							AND pay_amount = #{model.payAmount}
+						</if>
+						<if test="model.receiverAccountType != null">
+							AND receiver_account_type = #{model.receiverAccountType}
+						</if>
+						<if test="model.receiverFee != null">
+							AND receiver_fee = #{model.receiverFee}
+						</if>
+						<if test="model.payerFee != null">
+							AND payer_fee = #{model.payerFee}
+						</if>
+			</if>
+		</where>
+	</select>  
+	
+	<!-- 按条件组合搜索列表  -->
+	<select id="findList" resultMap="RM_RpAccountingVoucher">
+		SELECT
+		<include refid="columns" />
+		FROM  rp_accounting_voucher
+		<where>
+					<if test="id != null">
+						AND id = #{id}
+					</if>
+					<if test="createTime != null">
+						AND create_time = #{createTime}
+					</if>
+					<if test="editTime != null">
+						AND edit_time = #{editTime}
+					</if>
+					<if test="entryType != null">
+						AND entry_type = #{entryType}
+					</if>
+					<if test="requestNo != null and requestNo !=''">
+						AND request_no = #{requestNo}
+					</if>
+					<if test="fromSystem != null">
+						AND from_system = #{fromSystem}
+					</if>
+					<if test="voucherNo != null and voucherNo !=''">
+						AND voucher_no = #{voucherNo}
+					</if>
+					<if test="accountingDate != null">
+						AND accounting_date = #{accountingDate}
+					</if>
+					<if test="bankChangeAmount != null">
+						AND bank_change_amount = #{bankChangeAmount}
+					</if>
+					<if test="payerAccountNo != null and payerAccountNo !=''">
+						AND payer_account_no = #{payerAccountNo}
+					</if>
+					<if test="receiverAccountNo != null and receiverAccountNo !=''">
+						AND receiver_account_no = #{receiverAccountNo}
+					</if>
+					<if test="bankAccount != null and bankAccount !=''">
+						AND bank_account = #{bankAccount}
+					</if>
+					<if test="bankChannelCode != null and bankChannelCode !=''">
+						AND bank_channel_code = #{bankChannelCode}
+					</if>
+					<if test="payerChangeAmount != null">
+						AND payer_change_amount = #{payerChangeAmount}
+					</if>
+					<if test="receiverChangeAmount != null">
+						AND receiver_change_amount = #{receiverChangeAmount}
+					</if>
+					<if test="profit != null">
+						AND profit = #{profit}
+					</if>
+					<if test="income != null">
+						AND income = #{income}
+					</if>
+					<if test="cost != null">
+						AND cost = #{cost}
+					</if>
+					<if test="remark != null and remark !=''">
+						AND remark = #{remark}
+					</if>
+					<if test="bankOrderNo != null and bankOrderNo !=''">
+						AND bank_order_no = #{bankOrderNo}
+					</if>
+					<if test="payerAccountType != null">
+						AND payer_account_type = #{payerAccountType}
+					</if>
+					<if test="payAmount != null">
+						AND pay_amount = #{payAmount}
+					</if>
+					<if test="receiverAccountType != null">
+						AND receiver_account_type = #{receiverAccountType}
+					</if>
+					<if test="receiverFee != null">
+						AND receiver_fee = #{receiverFee}
+					</if>
+					<if test="payerFee != null">
+						AND payer_fee = #{payerFee}
+					</if>
+		</where>
+		<if test="sortColumns != null and sortColumns !=''">
+			ORDER BY #{sortColumns}
+		</if>
+	</select>
+
+	<!-- 分页 -->
+	<select id="findPageList" resultMap="RM_RpAccountingVoucher">
+		SELECT <include refid="columns" />
+		FROM rp_accounting_voucher
+		<where>
+			<if test="model != null">
+						<if test="model.id != null">
+							AND id = #{model.id}
+						</if>
+						<if test="model.createTime != null">
+							AND create_time = #{model.createTime}
+						</if>
+						<if test="model.editTime != null">
+							AND edit_time = #{model.editTime}
+						</if>
+						<if test="model.entryType != null">
+							AND entry_type = #{model.entryType}
+						</if>
+						<if test="model.requestNo != null and model.requestNo !=''">
+							AND request_no = #{model.requestNo}
+						</if>
+						<if test="model.fromSystem != null">
+							AND from_system = #{model.fromSystem}
+						</if>
+						<if test="model.voucherNo != null and model.voucherNo !=''">
+							AND voucher_no = #{model.voucherNo}
+						</if>
+						<if test="model.accountingDate != null">
+							AND accounting_date = #{model.accountingDate}
+						</if>
+						<if test="model.bankChangeAmount != null">
+							AND bank_change_amount = #{model.bankChangeAmount}
+						</if>
+						<if test="model.payerAccountNo != null and model.payerAccountNo !=''">
+							AND payer_account_no = #{model.payerAccountNo}
+						</if>
+						<if test="model.receiverAccountNo != null and model.receiverAccountNo !=''">
+							AND receiver_account_no = #{model.receiverAccountNo}
+						</if>
+						<if test="model.bankAccount != null and model.bankAccount !=''">
+							AND bank_account = #{model.bankAccount}
+						</if>
+						<if test="model.bankChannelCode != null and model.bankChannelCode !=''">
+							AND bank_channel_code = #{model.bankChannelCode}
+						</if>
+						<if test="model.payerChangeAmount != null">
+							AND payer_change_amount = #{model.payerChangeAmount}
+						</if>
+						<if test="model.receiverChangeAmount != null">
+							AND receiver_change_amount = #{model.receiverChangeAmount}
+						</if>
+						<if test="model.profit != null">
+							AND profit = #{model.profit}
+						</if>
+						<if test="model.income != null">
+							AND income = #{model.income}
+						</if>
+						<if test="model.cost != null">
+							AND cost = #{model.cost}
+						</if>
+						<if test="model.remark != null and model.remark !=''">
+							AND remark = #{model.remark}
+						</if>
+						<if test="model.bankOrderNo != null and model.bankOrderNo !=''">
+							AND bank_order_no = #{model.bankOrderNo}
+						</if>
+						<if test="model.payerAccountType != null">
+							AND payer_account_type = #{model.payerAccountType}
+						</if>
+						<if test="model.payAmount != null">
+							AND pay_amount = #{model.payAmount}
+						</if>
+						<if test="model.receiverAccountType != null">
+							AND receiver_account_type = #{model.receiverAccountType}
+						</if>
+						<if test="model.receiverFee != null">
+							AND receiver_fee = #{model.receiverFee}
+						</if>
+						<if test="model.payerFee != null">
+							AND payer_fee = #{model.payerFee}
+						</if>
+			</if>
+		</where>
+		limit 
+		<choose>
+			<when test="pager != null">
+				#{pager.begin},#{pager.pageSize}
+			</when>
+			<otherwise>
+				0,10
+			</otherwise>
+		</choose>
+	</select>
+
+</mapper>
