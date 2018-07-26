@@ -56,4 +56,10 @@ public interface RpUserPayConfigMapper <T, PK extends Serializable>{
 	 * 按主键查找对象
 	 */
 	public abstract T getById(PK pk); 
+	
+	
+	/**
+	 * 按条件参数查找对象
+	 */
+	public abstract T getByParams(T obj); 
 }

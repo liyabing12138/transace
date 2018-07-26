@@ -659,5 +659,129 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</select>
+	
+	
+	<!-- 按条件参数查询对象属性  -->
+	<select id="getByParams" resultMap="RM_RpTradePaymentOrder">
+		SELECT
+		<include refid="columns" />
+		FROM  rp_trade_payment_order
+		<where>
+					<if test="id != null and id !=''">
+						AND id = #{id}
+					</if>
+					<if test="version != null">
+						AND version = #{version}
+					</if>
+					<if test="createTime != null">
+						AND create_time = #{createTime}
+					</if>
+					<if test="editor != null and editor !=''">
+						AND editor = #{editor}
+					</if>
+					<if test="creater != null and creater !=''">
+						AND creater = #{creater}
+					</if>
+					<if test="editTime != null">
+						AND edit_time = #{editTime}
+					</if>
+					<if test="status != null and status !=''">
+						AND status = #{status}
+					</if>
+					<if test="productName != null and productName !=''">
+						AND product_name = #{productName}
+					</if>
+					<if test="merchantOrderNo != null and merchantOrderNo !=''">
+						AND merchant_order_no = #{merchantOrderNo}
+					</if>
+					<if test="orderAmount != null">
+						AND order_amount = #{orderAmount}
+					</if>
+					<if test="orderFrom != null and orderFrom !=''">
+						AND order_from = #{orderFrom}
+					</if>
+					<if test="merchantName != null and merchantName !=''">
+						AND merchant_name = #{merchantName}
+					</if>
+					<if test="merchantNo != null and merchantNo !=''">
+						AND merchant_no = #{merchantNo}
+					</if>
+					<if test="orderTime != null">
+						AND order_time = #{orderTime}
+					</if>
+					<if test="orderDate != null">
+						AND order_date = #{orderDate}
+					</if>
+					<if test="orderIp != null and orderIp !=''">
+						AND order_ip = #{orderIp}
+					</if>
+					<if test="orderRefererUrl != null and orderRefererUrl !=''">
+						AND order_referer_url = #{orderRefererUrl}
+					</if>
+					<if test="returnUrl != null and returnUrl !=''">
+						AND return_url = #{returnUrl}
+					</if>
+					<if test="notifyUrl != null and notifyUrl !=''">
+						AND notify_url = #{notifyUrl}
+					</if>
+					<if test="cancelReason != null and cancelReason !=''">
+						AND cancel_reason = #{cancelReason}
+					</if>
+					<if test="orderPeriod != null">
+						AND order_period = #{orderPeriod}
+					</if>
+					<if test="expireTime != null">
+						AND expire_time = #{expireTime}
+					</if>
+					<if test="payWayCode != null and payWayCode !=''">
+						AND pay_way_code = #{payWayCode}
+					</if>
+					<if test="payWayName != null and payWayName !=''">
+						AND pay_way_name = #{payWayName}
+					</if>
+					<if test="remark != null and remark !=''">
+						AND remark = #{remark}
+					</if>
+					<if test="trxType != null and trxType !=''">
+						AND trx_type = #{trxType}
+					</if>
+					<if test="payTypeCode != null and payTypeCode !=''">
+						AND pay_type_code = #{payTypeCode}
+					</if>
+					<if test="payTypeName != null and payTypeName !=''">
+						AND pay_type_name = #{payTypeName}
+					</if>
+					<if test="fundIntoType != null and fundIntoType !=''">
+						AND fund_into_type = #{fundIntoType}
+					</if>
+					<if test="isRefund != null and isRefund !=''">
+						AND is_refund = #{isRefund}
+					</if>
+					<if test="refundTimes != null">
+						AND refund_times = #{refundTimes}
+					</if>
+					<if test="successRefundAmount != null">
+						AND success_refund_amount = #{successRefundAmount}
+					</if>
+					<if test="field1 != null and field1 !=''">
+						AND field1 = #{field1}
+					</if>
+					<if test="field2 != null and field2 !=''">
+						AND field2 = #{field2}
+					</if>
+					<if test="field3 != null and field3 !=''">
+						AND field3 = #{field3}
+					</if>
+					<if test="field4 != null and field4 !=''">
+						AND field4 = #{field4}
+					</if>
+					<if test="field5 != null and field5 !=''">
+						AND field5 = #{field5}
+					</if>
+					<if test="trxNo != null and trxNo !=''">
+						AND trx_no = #{trxNo}
+					</if>
+		</where>
+	</select>
 
 </mapper>

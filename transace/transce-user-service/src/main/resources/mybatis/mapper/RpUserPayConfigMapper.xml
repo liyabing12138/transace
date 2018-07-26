@@ -262,6 +262,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			ORDER BY #{sortColumns}
 		</if>
 	</select>
+	
+	
+	
 
 	<!-- 分页 -->
 	<select id="findPageList" resultMap="RM_RpUserPayConfig">
@@ -328,6 +331,64 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				0,10
 			</otherwise>
 		</choose>
+	</select>
+	
+	
+	<!-- 按条件参数查找对象  -->
+	<select id="getByParams" resultMap="RM_RpUserPayConfig">
+		SELECT
+		<include refid="columns" />
+		FROM  rp_user_pay_config
+		<where>
+					<if test="id != null and id !=''">
+						AND id = #{id}
+					</if>
+					<if test="createTime != null">
+						AND create_time = #{createTime}
+					</if>
+					<if test="editTime != null">
+						AND edit_time = #{editTime}
+					</if>
+					<if test="version != null">
+						AND version = #{version}
+					</if>
+					<if test="remark != null and remark !=''">
+						AND remark = #{remark}
+					</if>
+					<if test="status != null and status !=''">
+						AND status = #{status}
+					</if>
+					<if test="auditStatus != null and auditStatus !=''">
+						AND audit_status = #{auditStatus}
+					</if>
+					<if test="isAutoSett != null and isAutoSett !=''">
+						AND is_auto_sett = #{isAutoSett}
+					</if>
+					<if test="productCode != null and productCode !=''">
+						AND product_code = #{productCode}
+					</if>
+					<if test="productName != null and productName !=''">
+						AND product_name = #{productName}
+					</if>
+					<if test="userNo != null and userNo !=''">
+						AND user_no = #{userNo}
+					</if>
+					<if test="userName != null and userName !=''">
+						AND user_name = #{userName}
+					</if>
+					<if test="riskDay != null">
+						AND risk_day = #{riskDay}
+					</if>
+					<if test="payKey != null and payKey !=''">
+						AND pay_key = #{payKey}
+					</if>
+					<if test="fundIntoType != null and fundIntoType !=''">
+						AND fund_into_type = #{fundIntoType}
+					</if>
+					<if test="paySecret != null and paySecret !=''">
+						AND pay_secret = #{paySecret}
+					</if>
+		</where>
 	</select>
 
 </mapper>

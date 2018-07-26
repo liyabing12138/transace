@@ -269,5 +269,51 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			</otherwise>
 		</choose>
 	</select>
+	
+	
+	<!-- 按条件参数查找对象  -->
+	<select id="getByParams" resultMap="RM_RpPayWay">
+		SELECT
+		<include refid="columns" />
+		FROM  rp_pay_way
+		<where>
+					<if test="id != null and id !=''">
+						AND ID = #{id}
+					</if>
+					<if test="version != null">
+						AND version = #{version}
+					</if>
+					<if test="createTime != null">
+						AND create_time = #{createTime}
+					</if>
+					<if test="editTime != null">
+						AND edit_time = #{editTime}
+					</if>
+					<if test="payWayCode != null and payWayCode !=''">
+						AND pay_way_code = #{payWayCode}
+					</if>
+					<if test="payWayName != null and payWayName !=''">
+						AND pay_way_name = #{payWayName}
+					</if>
+					<if test="payTypeCode != null and payTypeCode !=''">
+						AND pay_type_code = #{payTypeCode}
+					</if>
+					<if test="payTypeName != null and payTypeName !=''">
+						AND pay_type_name = #{payTypeName}
+					</if>
+					<if test="payProductCode != null and payProductCode !=''">
+						AND pay_product_code = #{payProductCode}
+					</if>
+					<if test="status != null and status !=''">
+						AND status = #{status}
+					</if>
+					<if test="sorts != null">
+						AND sorts = #{sorts}
+					</if>
+					<if test="payRate != null">
+						AND pay_rate = #{payRate}
+					</if>
+		</where>
+	</select>
 
 </mapper>

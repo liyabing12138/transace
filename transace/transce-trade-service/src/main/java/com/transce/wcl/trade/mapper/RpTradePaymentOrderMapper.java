@@ -56,4 +56,9 @@ public interface RpTradePaymentOrderMapper <T, PK extends Serializable> {
 	 * ���������Ҷ���
 	 */
 	public abstract T getById(PK pk); 
+	
+	/**
+	 * 按条件参数查找对象
+	 */
+	public abstract T getByParams(T obj); 
 }
